@@ -3,18 +3,24 @@
 {% block title %}Company index{% endblock %}
 
 {% block body %}
-    <h1>Company Table</h1>
 
+    <style>
+        .company-button-anchor {text-decoration: none;}
+        .btn:hover .company-button-anchor{color: white; }
+    </style>
+    
     <div class='container'>
+        <h1 class='text-center mb-3'>Companies Table</h1>
         <table class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Sector</th>
-                    <th>actions</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +32,12 @@
                     <td>{{ company.email }}</td>
                     <td>{{ company.sector }}</td>
                     <td>
-                        <a href="{{ path('company_show', {'id': company.id}) }}">show</a>
-                        <a href="{{ path('company_edit', {'id': company.id}) }}">edit</a>
+                        <button class='btn btn btn-outline-primary'>
+                            <a class='company-button-anchor' href="{{ path('company_edit', {'id': company.id}) }}">Edit</a>
+                        </button>
+                    </td>
+                    <td>
+                        {{ include('company/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}
@@ -37,8 +47,8 @@
             {% endfor %}
             </tbody>
         </table>
-        <Button class='btn btn-danger'>
-            <a href="{{ path('company_new') }}">Create new</a>
-        </Button>
+        <button class='btn btn-outline-primary'>
+            <a class='company-button-anchor' href="{{ path('company_new') }}">Create new</a>
+        </button>
     </div>
 {% endblock %}
