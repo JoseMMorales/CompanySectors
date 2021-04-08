@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CompanyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,11 @@ class Company
      * @ORM\Column(type="string", length=32)
      */
     private $sector;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Sector::class, inversedBy="companies")
+     */
+    private $sectorCompany;
 
     public function getId(): ?int
     {
@@ -86,6 +93,18 @@ class Company
     public function setSector(string $sector): self
     {
         $this->sector = $sector;
+
+        return $this;
+    }
+
+    public function getSectorCompany(): ?Sector
+    {
+        return $this->sectorCompany;
+    }
+
+    public function setSectorCompany(?Sector $sectorCompany): self
+    {
+        $this->sectorCompany = $sectorCompany;
 
         return $this;
     }

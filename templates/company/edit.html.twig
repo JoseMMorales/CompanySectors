@@ -8,6 +8,8 @@
 
         {{ include('company/_form.html.twig', {'button_label': 'Update'}) }}
 
-        <a href="{{ path('company_index') }}">back to list</a>
+        <button class='btn btn-outline-primary'>
+            <a href="{{ path('company_index') }}">back to list</a>
+        </button>
     </div>
 {% endblock %}

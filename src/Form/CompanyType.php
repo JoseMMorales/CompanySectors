@@ -13,8 +13,14 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('phone')
-            ->add('email')
+            ->add('phone', null, [
+                'required'   => false,
+                'empty_data' => '',
+            ])
+            ->add('email', null, [
+                'required'   => false,
+                'empty_data' => '',
+            ])
             ->add('sector')
         ;
     }
