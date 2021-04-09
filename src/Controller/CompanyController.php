@@ -25,13 +25,7 @@ class CompanyController extends AbstractController
         $response = [];
 
         foreach ($companies as $company) {
-            $companyObj = [
-                'id' => $company->getId(),
-                'name' => $company->getName(),
-                'phone' => $company->getPhone(),
-                'email' => $company->getEmail(),
-                'sector' => $company->getSectorCompany()->getName()
-            ];
+            $companyObj = $this->companyObject($company);
             $response[] = $companyObj;
         }
         
@@ -66,11 +60,30 @@ class CompanyController extends AbstractController
     /**
      * @Route("/{id}", name="company_show", methods={"GET"})
      */
-    public function show(Company $company): Response
+    public function show(int $id, CompanyRepository $companyRepo): Response
     {
+        $company = $companyRepo->find($id);
+
+        dump($company);
+
+        $companyObj = $this->companyObject($company);
+
         return $this->render('company/show.html.twig', [
-            'company' => $company,
+            'company' => $companyObj,
         ]);
+    }
+
+    private function companyObject($company)
+    {
+        $companyObj = [
+            'id' => $company->getId(),
+            'name' => $company->getName(),
+            'phone' => $company->getPhone(),
+            'email' => $company->getEmail(),
+            'sector' => $company->getSectorCompany()->getName()
+        ];
+
+        return $companyObj;
     }
 
     /**

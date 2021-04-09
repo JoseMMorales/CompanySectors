@@ -40,6 +40,9 @@ class Company
 
     /**
      * @ORM\ManyToOne(targetEntity=Sector::class, inversedBy="companies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sector_company_id", referencedColumnName="id")
+     * })
      */
     private $sectorCompany;
 

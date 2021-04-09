@@ -72,7 +72,6 @@ class Sector
     public function removeCompany(Company $company): self
     {
         if ($this->companies->removeElement($company)) {
-            // set the owning side to null (unless already changed)
             if ($company->getSectorCompany() === $this) {
                 $company->setSectorCompany(null);
             }

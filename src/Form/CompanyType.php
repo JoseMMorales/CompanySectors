@@ -23,10 +23,11 @@ class CompanyType extends AbstractType
                 'required'   => false,
                 'empty_data' => '',
             ])
-            ->add('Sector',EntityType::class,
+            ->add('sectorCompany',EntityType::class,
                 array(
                     'class' => 'App:Sector',
                     'choice_label' => 'name',
+                    'choice_value' => 'id',
                     'placeholder' => 'Choose a sector',
                     'mapped' => false
                 )
