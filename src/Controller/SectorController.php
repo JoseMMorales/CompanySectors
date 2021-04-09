@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/sector")
@@ -61,7 +62,7 @@ class SectorController extends AbstractController
     /**
      * @Route("/{id}/edit", name="sector_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Sector $sector): Response
+    public function edit(Request $request, Sector $sector, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(SectorType::class, $sector);
         $form->handleRequest($request);

@@ -3,33 +3,43 @@
 {% block title %}Sector index{% endblock %}
 
 {% block body %}
-    <h1>Sector index</h1>
+    <div class='container'>
+        <h1 class='text-center mb-3'>Sector Table</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sector in sectors %}
-            <tr>
-                <td>{{ sector.id }}</td>
-                <td>{{ sector.name }}</td>
-                <td>
-                    <a href="{{ path('sector_show', {'id': sector.id}) }}">show</a>
-                    <a href="{{ path('sector_edit', {'id': sector.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('sector_new') }}">Create new</a>
+        <table class='table table-striped table-bordered'>
+            <thead>
+                <tr class='text-center'>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sector in sectors %}
+                <tr class='text-center'>
+                    <td>{{ sector.id }}</td>
+                    <td>{{ sector.name }}</td>
+                    <td>
+                        <button class='btn btn btn-outline-primary'>
+                            <a class='company-button-anchor' href="{{ path('sector_edit', {'id': sector.id}) }}">Edit</a>
+                        </button>
+                    </td>
+                    <td>
+                        <button class='btn btn btn-outline-primary'>
+                            <a class='company-button-anchor' href="{{ path('sector_show', {'id': sector.id}) }}">Delete</a>
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            <button class='btn btn btn-outline-primary'>
+                <a class='company-button-anchor' href="{{ path('sector_new') }}">Create new</a>
+            </button>
+    </div>
 {% endblock %}
