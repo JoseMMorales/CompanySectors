@@ -64,8 +64,6 @@ class CompanyController extends AbstractController
     {
         $company = $companyRepo->find($id);
 
-        dump($company);
-
         $companyObj = $this->companyObject($company);
 
         return $this->render('company/show.html.twig', [
