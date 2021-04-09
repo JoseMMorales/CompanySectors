@@ -13,11 +13,16 @@
             <li class="list-group-item text-center"><b>Sector:</b>  {{ sector.name }}</li>
         </ul>
 
-        <div class='d-flex justify-content-between mt-2'>
+        <div class='d-flex justify-content-between my-2'>
             {{ include('sector/_delete_form.html.twig') }}
             <button class='btn btn btn-outline-primary ml-5'>
                 <a class='company-button-anchor' href="{{ path('sector_index') }}">Cancel</a>
             </button>
         </div>
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
     </div>    
 {% endblock %}

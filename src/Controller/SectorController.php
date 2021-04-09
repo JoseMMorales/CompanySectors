@@ -84,12 +84,23 @@ class SectorController extends AbstractController
      */
     public function delete(Request $request, Sector $sector): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$sector->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($sector);
-            $entityManager->flush();
-        }
+        $companies = $sector->getCompanies();
 
-        return $this->redirectToRoute('sector_index');
+        if (count($companies) > 0) {
+            $this->addFlash("error", "This Sector is been used by a company, try again!");
+
+            return $this->render('sector/show.html.twig', [
+                'sector' => $sector,
+            ]);
+
+        } else {
+            if ($this->isCsrfTokenValid('delete'.$sector->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($sector);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('sector_index');
+        };
     }
 }
