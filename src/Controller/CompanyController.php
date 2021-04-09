@@ -32,13 +32,8 @@ class CompanyController extends AbstractController
         //     $response[] = $companyObj;
         // }
 
-        $response = $paginator->paginate(
-            // Consulta Doctrine, no resultados
-            $companies,
-            // Definir el parámetro de la página
-            $request->query->getInt('page', 1),
-            // Items per page
-            2
+        $response = $paginator->paginate($companies,
+            $request->query->getInt('page', 1), 2
         );
         
         return $this->render('company/index.html.twig', [

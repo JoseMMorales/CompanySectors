@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/sector")
@@ -19,10 +20,18 @@ class SectorController extends AbstractController
     /**
      * @Route("/", name="sector_index", methods={"GET"})
      */
-    public function index(SectorRepository $sectorRepository): Response
+    public function index(Request $request, SectorRepository $sectorRepository, PaginatorInterface $paginator): Response
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $sectors = $sectorRepository->findAll();
+
+        $response = $paginator->paginate($sectors,
+            $request->query->getInt('page', 1), 1
+        );
+
         return $this->render('sector/index.html.twig', [
-            'sectors' => $sectorRepository->findAll(),
+            'sectors' => $response,
         ]);
     }
 
