@@ -3,9 +3,9 @@
 {% block title %}New Sector{% endblock %}
 
 {% block body %}
-    <h1>Create new Sector</h1>
+    <div class='container'>
+        <h1>Create new Sector</h1>
 
-    {{ include('sector/_form.html.twig') }}
-
-    <a href="{{ path('sector_index') }}">back to list</a>
+        {{ include('sector/_form.html.twig') }}
+    </div>
 {% endblock %}
