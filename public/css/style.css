@@ -6,6 +6,10 @@ li {
   list-style: none;
 }
 
+button {
+  display: block;
+}
+
 .home-button-anchor {
   color: #fff;
 }
@@ -16,5 +20,43 @@ li {
 }
 
 .btn:hover .company-button-anchor {
-  color: white; 
+  color: #fff; 
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination > span {
+  display: block;
+  padding: .5rem;
+  border: .1rem solid #0d6efd;
+  cursor: pointer;
+}
+
+.pagination > span:first-child {
+  border-radius: .25rem 0 0 .25rem
+}
+
+.pagination > span:last-child {
+  border-radius: 0 .25rem .25rem 0
+}
+
+.pagination > span > a {
+  padding: .3rem;
+  font-weight: 400;
+}
+
+.pagination > span:hover,
+.pagination > span:active,
+.current {
+  background-color: #0d6efd;
+}
+
+.pagination > span:hover a,
+.pagination > span:active a,
+.current {
+  font-weight: bold;
+  color: #fff;
+  font-weight: 400;
 }

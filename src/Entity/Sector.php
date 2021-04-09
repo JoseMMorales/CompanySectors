@@ -11,7 +11,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=SectorRepository::class)
- * @UniqueEntity(fields={"name"}, message="The Sector {{ value }} already exists, please try again!")
+ * @UniqueEntity(
+ * fields={"name"}, 
+ * message="The Sector {{ value }} already exists, please try again!"
+ * )
  */
 class Sector
 {
