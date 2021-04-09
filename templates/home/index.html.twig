@@ -3,24 +3,18 @@
 {% block title %}Company App{% endblock %}
 
 {% block body %}
-<style>
-    .list-element {list-style: none;}
-    .home-button-anchor {color: white; text-decoration: none;}
-    .btn:hover .home-button-anchor{color: yellow; }
-    .home-button-anchor:hover {color: yellow; }
-</style>
 
 <div class='container'>
     <h1 class='text-center mb-3'>Welcome to Company App!!</h1>
     <ul class='d-flex flex-row justify-content-around align-items-center'>
-        <li class='list-element'>
+        <li>
             <button class='btn btn-primary'>
-                <a class='home-button-anchor' href="{{ path('company_index') }}">Companies</a>
+                <a class='home-button-anchor' href='{{ path('company_index') }}'>Companies</a>
             </button> 
         </li>
-        <li class='list-element'>
+        <li>
             <button class='btn btn-primary'>
-               <a class='home-button-anchor' href="{{ path('sector_index') }}">Sectors</a>
+               <a class='home-button-anchor' href='{{ path('sector_index') }}'>Sectors</a>
             </button> 
         </li>
     </ul>

@@ -20,8 +20,23 @@ class CompanyController extends AbstractController
      */
     public function index(CompanyRepository $companyRepository): Response
     {
+        $companies = $companyRepository->findAll();
+
+        $response = [];
+
+        foreach ($companies as $company) {
+            $companyObj = [
+                'id' => $company->getId(),
+                'name' => $company->getName(),
+                'phone' => $company->getPhone(),
+                'email' => $company->getEmail(),
+                'sector' => $company->getSectorCompany()->getName()
+            ];
+            $response[] = $companyObj;
+        }
+        
         return $this->render('company/index.html.twig', [
-            'companies' => $companyRepository->findAll(),
+            'companies' => $response
         ]);
     }
 

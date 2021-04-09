@@ -1,0 +1,20 @@
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.home-button-anchor {
+  color: #fff;
+}
+
+.btn:hover .home-button-anchor,
+.home-button-anchor:hover {
+  color: #ffff00; 
+}
+
+.btn:hover .company-button-anchor {
+  color: white; 
+}

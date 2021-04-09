@@ -3,16 +3,10 @@
 {% block title %}Company index{% endblock %}
 
 {% block body %}
-
-    <style>
-        .company-button-anchor {text-decoration: none;}
-        .btn:hover .company-button-anchor{color: white; }
-    </style>
-    
     <div class='container'>
         <h1 class='text-center mb-3'>Companies Table</h1>
-        <table class="table">
-            <thead class="thead-dark">
+        <table class='table'>
+            <thead class='thead-dark'>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -33,7 +27,7 @@
                     <td>{{ company.sector }}</td>
                     <td>
                         <button class='btn btn btn-outline-primary'>
-                            <a class='company-button-anchor' href="{{ path('company_edit', {'id': company.id}) }}">Edit</a>
+                            <a class='company-button-anchor' href='{{ path('company_edit', {'id': company.id}) }}'>Edit</a>
                         </button>
                     </td>
                     <td>
@@ -42,13 +36,13 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6">no records found</td>
+                    <td colspan='6'>no records found</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
         <button class='btn btn-outline-primary'>
-            <a class='company-button-anchor' href="{{ path('company_new') }}">Create new</a>
+            <a class='company-button-anchor' href='{{ path('company_new') }}'>Create new</a>
         </button>
     </div>
 {% endblock %}
