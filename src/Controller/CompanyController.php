@@ -33,7 +33,7 @@ class CompanyController extends AbstractController
         }
 
         $response = $paginator->paginate($companiesAndSection,
-            $request->query->getInt('page', 1), 2
+            $request->query->getInt('page', 1), 10
         );
 
         $numberCompanies = count($response);
