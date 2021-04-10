@@ -30,8 +30,11 @@ class SectorController extends AbstractController
             $request->query->getInt('page', 1), 1
         );
 
+        $numberSectors = count($response);
+
         return $this->render('sector/index.html.twig', [
             'sectors' => $response,
+            'numberSectors' => $numberSectors
         ]);
     }
 

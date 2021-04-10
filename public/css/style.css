@@ -29,7 +29,7 @@ button {
 
 .pagination > span {
   display: block;
-  padding: .5rem;
+  padding: .3rem;
   border: .1rem solid #0d6efd;
   cursor: pointer;
 }

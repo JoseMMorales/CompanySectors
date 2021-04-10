@@ -25,19 +25,22 @@ class CompanyController extends AbstractController
         
         $companies = $companyRepository->findAll();
 
-        // $response = [];
+        $companiesAndSection = [];
 
-        // foreach ($companies as $company) {
-        //     $companyObj = $this->companyObject($company);
-        //     $response[] = $companyObj;
-        // }
+        foreach ($companies as $company) {
+            $companyObj = $this->companyObject($company);
+            $companiesAndSection[] = $companyObj;
+        }
 
-        $response = $paginator->paginate($companies,
+        $response = $paginator->paginate($companiesAndSection,
             $request->query->getInt('page', 1), 2
         );
+
+        $numberCompanies = count($response);
         
         return $this->render('company/index.html.twig', [
-            'companies' => $response
+            'companies' => $response,
+            'numberCompanies' => $numberCompanies
         ]);
     }
 
