@@ -29,7 +29,6 @@ class CompanyType extends AbstractType
                     'choice_label' => 'name',
                     'choice_value' => 'id',
                     'placeholder' => 'Choose a sector',
-                    'mapped' => false
                 )
             );
     }

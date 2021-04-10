@@ -27,7 +27,7 @@ class SectorController extends AbstractController
         $sectors = $sectorRepository->findAll();
 
         $response = $paginator->paginate($sectors,
-            $request->query->getInt('page', 1), 1
+            $request->query->getInt('page', 1), 2
         );
 
         $numberSectors = count($response);
