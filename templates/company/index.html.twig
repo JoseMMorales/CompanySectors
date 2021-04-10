@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Company index{% endblock %}
+{% block title %}Company App{% endblock %}
 
 {% block body %}
     {% include('navbar.html.twig') %}
@@ -47,11 +47,14 @@
                 </tbody>
             </table>
         </div>
-        <button class='btn btn-outline-primary'>
-            <a class='company-button-anchor' href='{{ path('company_new') }}'>Create new</a>
-        </button>
-        <div class="navigation">
-            {{ knp_pagination_render(companies) }}
+        <div class='d-flex justify-content-between align-items-center'>
+            <button class='btn btn-outline-primary'>
+                <a class='company-button-anchor' href='{{ path('company_new') }}'>Create new</a>
+            </button>
+            <div class="navigation m-5">
+                {{ knp_pagination_render(companies) }}
+            </div>
         </div>
+        
     </div>
 {% endblock %}

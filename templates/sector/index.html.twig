@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sector index{% endblock %}
+{% block title %}Company App{% endblock %}
 
 {% block body %}
     {% include('navbar.html.twig') %}
@@ -41,11 +41,13 @@
                 </tbody>
             </table>
         </div>
-        <button class='btn btn btn-outline-primary'>
-            <a class='company-button-anchor' href="{{ path('sector_new') }}">Create new</a>
-        </button>
-        <div class="navigation">
-            {{ knp_pagination_render(sectors) }}
+        <div class='d-flex justify-content-between align-items-center'>
+            <button class='btn btn btn-outline-primary'>
+                <a class='company-button-anchor' href="{{ path('sector_new') }}">Create new</a>
+            </button>
+            <div class="navigation">
+                {{ knp_pagination_render(sectors) }}
+            </div>
         </div>
     </div>
 {% endblock %}
