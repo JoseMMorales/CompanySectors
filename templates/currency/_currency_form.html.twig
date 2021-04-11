@@ -1,0 +1,20 @@
+{# <div class="d-flex flex-direction-row justify-content-between mb-2">
+{{ form_start(currencyForm, { 'attr': {'class': 'w-100'} }) }}
+    {{ form_widget(currencyForm) }}
+    <div class="input-group">
+      <div class="input-group-prepend me-2">
+      <button class="btn btn-outline-secondary border-radious-none">
+          {{ button_label|default('Calculate') }}
+      </button>
+{{ form_end(currencyForm) }} #}
+
+{{ form_start(currencyForm) }}
+  <div class='container'>
+      <ul class='d-flex flex-column justify-content-around align-items-center'>
+        {{ form_widget(currencyForm) }}
+          <button class="btn btn-outline-secondary border-radious-none">
+              {{ button_label|default('Calculate') }}
+          </button>
+      </ul>
+  </div>
+{{ form_end(currencyForm) }}

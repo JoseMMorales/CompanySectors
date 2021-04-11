@@ -6,11 +6,12 @@ use App\Entity\Company;
 use App\Form\CompanyType;
 use App\Form\FilterType;
 use App\Repository\CompanyRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/company")
@@ -18,14 +19,35 @@ use Knp\Component\Pager\PaginatorInterface;
 class CompanyController extends AbstractController
 {
     /**
-     * @Route("/", name="company_index", methods={"GET"})
+     * @Route("/", name="company_index", methods={"GET", "POST"})
      */
-    public function index(Request $request, CompanyRepository $companyRepository, PaginatorInterface $paginator): Response
+    public function index(
+        Request $request, 
+        CompanyRepository $companyRepository,
+        EntityManagerInterface $em, 
+        PaginatorInterface $paginator): Response
     {
-        $form = $this->createForm(FilterType::class);
-
-        $em = $this->getDoctrine()->getManager();
         
+        $form = $this->createForm(FilterType::class);
+        $form->handleRequest($request);
+
+        $companyName = $form->get('name')->getData();
+        $sector = $form->get('sectorCompany')->getData();
+
+        // if ($companyName && !$sector) {
+        //     $new = $companyRepository->find($companyName);
+
+        //     $new->addSector($new);
+        //     $em->persist($new);
+        //     $em->flush();
+
+        //     return $this->redirectToRoute('company_index');
+        // } else if ($sector && !$companyName){
+        //     dump('Sector');
+        // } else {
+        //     dump('Both');
+        // }
+
         $companies = $companyRepository->findAll();
 
         $companiesAndSection = [];
