@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Company;
 use App\Form\CompanyType;
+use App\Form\FilterType;
 use App\Repository\CompanyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,8 @@ class CompanyController extends AbstractController
      */
     public function index(Request $request, CompanyRepository $companyRepository, PaginatorInterface $paginator): Response
     {
+        $form = $this->createForm(FilterType::class);
+
         $em = $this->getDoctrine()->getManager();
         
         $companies = $companyRepository->findAll();
@@ -40,7 +43,8 @@ class CompanyController extends AbstractController
         
         return $this->render('company/index.html.twig', [
             'companies' => $response,
-            'numberCompanies' => $numberCompanies
+            'numberCompanies' => $numberCompanies,
+            'filterForm' => $form->createView(),
         ]);
     }
 

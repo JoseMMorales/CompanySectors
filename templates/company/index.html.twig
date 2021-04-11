@@ -7,23 +7,7 @@
     <div class='container'>
         <h1 class='text-center mb-3'>Companies Table</h1>
         <p><b>Results:</b>  {{ numberCompanies }}</p>
-        <div class="d-flex flex-direction-row justify-content-between mb-2">
-            <div class="input-group">
-                <div class="input-group-prepend me-2">
-                    <button class="btn btn-outline-secondary border-radious-none" type="button">Clean</button>
-                    <button class="btn btn-outline-secondary border-radious-none" type="button">Filter</button>
-                </div>
-                <select class="form-select" aria-label="Default select example w-50">
-                    <option selected>Sector</option>
-                    <option value="1">Electric</option>
-                    <option value="2">Grocery</option>
-                    <option value="3">Toys</option>
-                    <option value="4">Water</option>
-                </select>
-                <input type="text" class="form-control border-radious-none w-75" placeholder="Company Name...">
-            </div>
-        </div>
-        
+        {{ include('company/_filter_form.html.twig') }}        
         <div class="table-responsive">
             <table class='table table-striped table-bordered'>
                 <thead>

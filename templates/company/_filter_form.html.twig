@@ -1,0 +1,16 @@
+    <div class="d-flex flex-direction-row justify-content-between mb-2">
+        {{ form_start(filterForm, { 'attr': {'class': 'w-100'} }) }}
+            <div class="input-group">
+                <div class="input-group-prepend me-2">
+                    <button class="btn btn-outline-secondary border-radious-none" type="button">Clean</button>
+                    <button class="btn btn-outline-secondary border-radious-none" type="submit">Filter</button>
+                </div>
+                {{ form_widget(filterForm.sectorCompany, { 'attr': {'class': 'form-select','placeholder':"Company Name..."} }) }}
+                {{ form_widget(filterForm.name, { 'attr': {'class': 'form-control border-radious-none w-75','placeholder':"Company Name..."} }) }}
+            </div>
+        {{ form_end(filterForm) }}
+    </div>
+
+
+    
+
