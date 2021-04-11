@@ -31,6 +31,14 @@ button {
   color: #fff; 
 }
 
+.input-group > .form-control {
+  text-align: center;
+}
+
+.border-radious-none {
+  border-radius: 0;
+}
+
 .pagination {
   justify-content: center;
 }
@@ -78,6 +86,14 @@ button {
 
 .form-signin .form-signin-heading, .form-signin .checkbox {
   margin-bottom: .6rem;
+}
+
+.box-form {
+  max-width: 510px;
+}
+
+.input-group > .form-select {
+  width: 100px;
 }
 
 .form-signin .checkbox {
