@@ -4,8 +4,8 @@
 
 {% block body %}
     {% include('navbar.html.twig') %}
-    <div class='container'>
-        <h1 class='text-center mb-3'>Welcome to Company App!!</h1>
+    <div class='container-fluid container-home'>
+        <h1 class='text-center mb-3'>Choose a section!!</h1>
         <ul class='d-flex flex-row justify-content-around align-items-center'>
             <li>
                 <button class='btn btn-primary'>
@@ -14,7 +14,7 @@
             </li>
             <li>
                 <button class='btn btn-primary'>
-                <a class='home-button-anchor' href='{{ path('sector_index') }}'>Sectors</a>
+                    <a class='home-button-anchor' href='{{ path('sector_index') }}'>Sectors</a>
                 </button> 
             </li>
         </ul>

@@ -1,12 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CurrencyController!{% endblock %}
+{% block title %}Company App!{% endblock %}
 
 {% block body %}
-
-<div class="container">
-    <h1>Currency Exchange✅</h1>
-
+{% include('navbar.html.twig') %}
     {{ include('currency/_currency_form.html.twig') }}  
-</div>
 {% endblock %}

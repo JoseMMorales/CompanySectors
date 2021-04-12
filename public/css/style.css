@@ -10,12 +10,17 @@ button {
   display: block;
 }
 
+.container, .container-home,
+.container-fluid {
+  margin-top: 75px;
+}
+
 .container-home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
- background-color: #e1e6e2;
+  background-color: #e1e6e2;
 }
 
 .home-button-anchor {
@@ -79,7 +84,7 @@ button {
 /* Login */
 
 .form-signin {
-  max-width: 330px;
+  max-width: 430px;
   padding: 1rem;
   margin: 0 auto;
 }

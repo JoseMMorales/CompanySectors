@@ -1,20 +1,21 @@
-{# <div class="d-flex flex-direction-row justify-content-between mb-2">
-{{ form_start(currencyForm, { 'attr': {'class': 'w-100'} }) }}
-    {{ form_widget(currencyForm) }}
-    <div class="input-group">
-      <div class="input-group-prepend me-2">
-      <button class="btn btn-outline-secondary border-radious-none">
-          {{ button_label|default('Calculate') }}
-      </button>
-{{ form_end(currencyForm) }} #}
-
-{{ form_start(currencyForm) }}
-  <div class='container'>
-      <ul class='d-flex flex-column justify-content-around align-items-center'>
-        {{ form_widget(currencyForm) }}
-          <button class="btn btn-outline-secondary border-radious-none">
+<div class="container-fluid container-home">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="box-form col-sm-12 col-md-6 col-md-offset-4 col-lg- col-xl-6">
+        <h1 class="text-center">Exchange Currency</h1>
+        <div class="account-wall">
+          {{ form_start(currencyForm, {'attr': {'class': 'd-flex flex-column justify-content-center form-signin border-primary'}}) }}
+            {% for message in app.flashes('success') %}
+              <div class="alert alert-success">
+                {{ message }}
+              </div>
+            {% endfor %}
+              {{ form_widget(currencyForm) }}
+            <button class="btn btn-outline-secondary border-radious-none mt-3">
               {{ button_label|default('Calculate') }}
-          </button>
-      </ul>
+            </button>
+          {{ form_end(currencyForm) }}
+          </form>
+        </div>
+    </div>
   </div>
-{{ form_end(currencyForm) }}
+</div>

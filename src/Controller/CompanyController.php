@@ -34,19 +34,17 @@ class CompanyController extends AbstractController
         $companyName = $form->get('name')->getData();
         $sector = $form->get('sectorCompany')->getData();
 
-        // if ($companyName && !$sector) {
-        //     $new = $companyRepository->find($companyName);
+        if ($companyName && !$sector) {
+            $new = $companyRepository->find($companyName);
 
-        //     $new->addSector($new);
-        //     $em->persist($new);
-        //     $em->flush();
+            dump($new);
 
-        //     return $this->redirectToRoute('company_index');
-        // } else if ($sector && !$companyName){
-        //     dump('Sector');
-        // } else {
-        //     dump('Both');
-        // }
+            return $this->redirectToRoute('company_index');
+        } else if ($sector && !$companyName){
+            dump('Sector');
+        } else {
+            dump('Both');
+        }
 
         $companies = $companyRepository->findAll();
 

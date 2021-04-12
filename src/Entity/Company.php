@@ -46,40 +46,6 @@ class Company
      */
     private $sectorCompany;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Sector::class, inversedBy="businesses")
-     */
-    private $sectors;
-
-    public function __construct()
-    {
-        $this->sectors = new ArrayCollection();
-    }
-
-    /**
-     * @return Collection|Sector[]
-     */
-    public function getSectors(): Collection
-    {
-        return $this->sectors;
-    }
-
-    public function addSector(Sector $sector): self
-    {
-        if (!$this->sectors->contains($sector)) {
-            $this->sectors[] = $sector;
-        }
-
-        return $this;
-    }
-
-    public function removeSector(Sector $sector): self
-    {
-        $this->sectors->removeElement($sector);
-
-        return $this;
-    }
-
     public function getId(): ?int
     {
         return $this->id;
