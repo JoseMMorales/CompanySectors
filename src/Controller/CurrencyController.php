@@ -87,7 +87,7 @@ class CurrencyController extends AbstractController
     {
         $request = $this->client->request(
             'GET',
-            "http://data.fixer.io/api/convert?access_key=6a68d9bd0d5568598e2a163a0c040a7e&from=$from&to=$to&amount=$amount&date=$dateString"
+            "http://data.fixer.io/api/convert?access_key=(Your_Token)&from=$from&to=$to&amount=$amount&date=$dateString"
         );
 
         $response = $request->toArray();
