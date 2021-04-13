@@ -5,8 +5,8 @@
                     <button class="btn btn-outline-secondary border-radious-none" id="button-clear" type="submit">Clean</button>
                     <button class="btn btn-outline-secondary border-radious-none" type="submit">Filter</button>
                 </div>
-                {{ form_widget(filterForm.sectorCompany, { 'attr': {'class': 'form-select'} }) }}
-                {{ form_widget(filterForm.name, { 'attr': {'class': 'form-control border-radious-none w-75','placeholder':"Company Name..."} }) }}
+                {{ form_widget(filterForm.sectorCompany, { 'attr': {'class': 'form-select', 'placeholder':"Sector..."} }) }}
+                {{ form_widget(filterForm.name, { 'attr': {'class': 'form-control border-radious-none w-75', 'placeholder':"Company Name..."} }) }}
             </div>
         {{ form_end(filterForm) }}
     </div>
