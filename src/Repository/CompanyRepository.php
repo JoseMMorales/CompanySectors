@@ -25,24 +25,27 @@ class CompanyRepository extends ServiceEntityRepository
         $sql_where = "";
 
         if($sectorName) {
-            $sql_where .=  "AND s.name = '$sectorName' ";
+            $sql_where .=  "AND sector.name = '$sectorName' ";
         }
 
         if($companyName) {
-            $sql_where .= "AND c.name = '$companyName' ";
+            $sql_where .= "AND company.name = '$companyName' ";
         }
 
         $sql_where_amended = substr($sql_where, 3);
 
-        $query = $em->createQuery("SELECT 
-                                        c
-                                    FROM App:Company c 
-                                    JOIN c.sectorCompany s 
-                                    WHERE $sql_where_amended");
-        
-        $companies = $query->getResult();
-
-        return $companies;
+        return $this->getEntityManager()
+                    ->createQueryBuilder()
+                    ->select(
+                        'company.id as id', 
+                        'company.name as name', 
+                        'company.phone as phone',
+                        'company.email as email',
+                        'sector.name as sectorCompany')
+                    ->from('App:Company', 'company')
+                    ->join('company.sectorCompany','sector')
+                    ->where("$sql_where_amended")
+                    ->getQuery()->getResult(); 
     }
 
     // /**

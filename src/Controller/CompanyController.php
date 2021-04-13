@@ -43,7 +43,7 @@ class CompanyController extends AbstractController
 
         if ($sectorName || $companyName) {
             $companiesAndSection = $companyRepository->getFilteredData($em, $sectorName, $companyName);
-            dump($companiesAndSection);
+
             $response = $paginator->paginate($companiesAndSection,
                 $request->query->getInt('page', 1), 10
             );
@@ -124,7 +124,7 @@ class CompanyController extends AbstractController
             'name' => $company->getName(),
             'phone' => $company->getPhone(),
             'email' => $company->getEmail(),
-            'sector' => $company->getSectorCompany()->getName()
+            'sectorCompany' => $company->getSectorCompany()->getName()
         ];
 
         return $companyObj;
