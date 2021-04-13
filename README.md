@@ -10,7 +10,7 @@ I have used [Symfony](https://symfony.com/) website-skeleton for a traditional w
 ## Composer..
 Company Sectors has been built with package manager [Composer](https://getcomposer.org/) to get all bundles required across the project. 
 
-#### How to to use it [here ...](https://getcomposer.org/doc/01-basic-usage.md)
+#### How to to use it [here ...](https://getcomposer.org/download/)
 
 ## Local Server...
 Symfony offers its own web server to make you more productive while developing any application, so that's why I chose [Symfony Server](https://symfony.com/doc/current/setup/symfony_server.html). 
