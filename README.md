@@ -2,7 +2,7 @@
 
 ## About this project...
 
-This is a CRUD App where the user can create, modify and delete companies and sectors. Full Stack project where accessing as an Admin you can have different functionalities to manage a group of companies by sectors. Designed for a clear and intuitive navigation to make use experience satisfactory, with a very simple steps to proceed with any action. Responsiveness and accessible in all devices. There is also a currency exchange service in the landing page, where the user can enter an amount and currencies to get immediate conversions.
+This is a CRUD App where the user can create, modify and delete companies and sectors, a Full Stack project where accessing as an Admin you can have different functionalities to manage a group of companies by sectors. Designed for a clear and intuitive navigation to make user experience satisfactory, with a very simple steps to proceed with any action. Responsiveness and accessible in all devices. There is also a currency exchange service in the landing page, where the user can enter an amount and currencies to get immediate conversions.
 
 ## Stack used...
 I have used [Symfony](https://symfony.com/) website-skeleton for a traditional web application structure, giving me an advantage of which dependencies would require during development stage, and also [Doctrine](https://www.doctrine-project.org/) to get PHP libraries in order to store on DDBB and mapping objects.
