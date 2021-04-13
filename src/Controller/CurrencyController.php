@@ -92,6 +92,8 @@ class CurrencyController extends AbstractController
 
         $response = $request->toArray();
 
+        dump($response);
+
         return $response;
     }
 
