@@ -10,11 +10,6 @@ button {
   display: block;
 }
 
-.container, .container-home,
-.container-fluid {
-  margin-top: 75px;
-}
-
 .container-home {
   display: flex;
   flex-direction: column;

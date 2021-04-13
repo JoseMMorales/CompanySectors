@@ -6,12 +6,13 @@ use App\Entity\Company;
 use App\Form\CompanyType;
 use App\Form\FilterType;
 use App\Repository\CompanyRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * @Route("/company")
@@ -24,7 +25,7 @@ class CompanyController extends AbstractController
     public function index(
         Request $request, 
         CompanyRepository $companyRepository,
-        EntityManagerInterface $em, 
+        EntityManagerInterface $em,
         PaginatorInterface $paginator): Response
     {
         
@@ -34,38 +35,49 @@ class CompanyController extends AbstractController
         $companyName = $form->get('name')->getData();
         $sector = $form->get('sectorCompany')->getData();
 
-        if ($companyName && !$sector) {
-            $new = $companyRepository->find($companyName);
-
-            dump($new);
-
-            return $this->redirectToRoute('company_index');
-        } else if ($sector && !$companyName){
-            dump('Sector');
-        } else {
-            dump('Both');
-        }
-
-        $companies = $companyRepository->findAll();
-
-        $companiesAndSection = [];
-
-        foreach ($companies as $company) {
-            $companyObj = $this->companyObject($company);
-            $companiesAndSection[] = $companyObj;
-        }
-
-        $response = $paginator->paginate($companiesAndSection,
-            $request->query->getInt('page', 1), 10
-        );
-
-        $numberCompanies = count($response);
+        $sectorName = '';
         
-        return $this->render('company/index.html.twig', [
-            'companies' => $response,
-            'numberCompanies' => $numberCompanies,
-            'filterForm' => $form->createView(),
-        ]);
+        if ($sector) {
+            $sectorName = $sector->getName();
+        };
+
+        if ($sectorName || $companyName) {
+            $companiesAndSection = $companyRepository->getFilteredData($em, $sectorName, $companyName);
+            dump($companiesAndSection);
+            $response = $paginator->paginate($companiesAndSection,
+                $request->query->getInt('page', 1), 10
+            );
+
+            $numberCompanies = count($response);
+
+            return $this->render('company/index.html.twig', [
+                'companies' => $response,
+                'numberCompanies' => $numberCompanies,
+                'filterForm' => $form->createView(),
+            ]);
+        
+        } else {
+            $companies = $companyRepository->findAll();
+
+            $companiesAndSection = [];
+
+            foreach ($companies as $company) {
+                $companyObj = $this->companyObject($company);
+                $companiesAndSection[] = $companyObj;
+            };
+
+            $response = $paginator->paginate($companiesAndSection,
+                $request->query->getInt('page', 1), 10
+            );
+
+            $numberCompanies = count($response);
+            
+            return $this->render('company/index.html.twig', [
+                'companies' => $response,
+                'numberCompanies' => $numberCompanies,
+                'filterForm' => $form->createView(),
+            ]);
+        }
     }
 
     /**

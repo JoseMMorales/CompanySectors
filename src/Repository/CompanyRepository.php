@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Company;
+use App\Entity\Sector;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,31 @@ class CompanyRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Company::class);
+    }
+
+    public function getFilteredData($em, $sectorName, $companyName) 
+    {
+        $sql_where = "";
+
+        if($sectorName) {
+            $sql_where .=  "AND s.name = '$sectorName' ";
+        }
+
+        if($companyName) {
+            $sql_where .= "AND c.name = '$companyName' ";
+        }
+
+        $sql_where_amended = substr($sql_where, 3);
+
+        $query = $em->createQuery("SELECT 
+                                        c
+                                    FROM App:Company c 
+                                    JOIN c.sectorCompany s 
+                                    WHERE $sql_where_amended");
+        
+        $companies = $query->getResult();
+
+        return $companies;
     }
 
     // /**

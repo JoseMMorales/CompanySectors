@@ -1,13 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Company App{% endblock %}
+{% block javascript %}
+    <script>
+        $(function() {
+            const filter = window.sessionStorage.getItem('filter');
+            const select = window.sessionStorage.getItem('select');
 
+            if (filter) {
+                $('#filter_name').val(filter);
+            };
+
+            if (select) {
+                $('#filter_sectorCompany').val(select);
+            };
+
+            $('#filter-form').on('submit', function (e) {
+                const input = $(e.target).find('#filter_name').val();
+                sessionStorage.setItem('filter', input);
+            });
+
+            $('#filter-form').on('submit', function () {
+                const selectOption = $('#filter_sectorCompany').find(":selected").text();
+                sessionStorage.setItem('select', selectOption);
+            });
+
+            $('#button-clear').click(function () {
+                $('input[type="text"], #filter_sectorCompany').val('');
+                sessionStorage.clear();
+            });
+        });
+    </script>
+{% endblock %}
 {% block body %}
     {% include('navbar.html.twig') %}
     <div class='container'>
         <h1 class='text-center mt-5'>Companies Table</h1>
         <p><b>Results:</b>  {{ numberCompanies }}</p>
-        {{ include('company/_filter_form.html.twig') }}        
+        {{ include('company/_filter_form.html.twig') }}   
         <div class="table-responsive">
             <table class='table table-striped table-bordered'>
                 <thead>
@@ -28,7 +58,7 @@
                         <td>{{ company.name }}</td>
                         <td>{{ company.phone }}</td>
                         <td>{{ company.email }}</td>
-                        <td>{{ company.sector }}</td>
+                        {# <td>{{ company.sector }}</td> #}
                         <td>
                             <button class='btn btn btn-outline-primary'>
                                 <a class='company-button-anchor' href='{{ path('company_edit', {'id': company.id}) }}'>Edit</a>

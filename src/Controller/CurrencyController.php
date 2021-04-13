@@ -45,7 +45,7 @@ class CurrencyController extends AbstractController
 
             if (!$currency) {
                 $response = $this->callExternalAPI($from, $to, $amount, $dateString);
-                $exchange = number_format($response['result'], 2);
+                $exchange = $response['result'];
 
                 $currency = new Currency();
                 $currency->setCurrencySend($from);
@@ -95,12 +95,12 @@ class CurrencyController extends AbstractController
         return $response;
     }
 
-    // private function returnCurrencyExchange($form, $exchange, $to)
-    // {
-    //     $this->addFlash("success", "Your exchange is $exchange $to!");
+    private function returnCurrencyExchange($form, $exchange, $to)
+    {
+        $this->addFlash("success", "Your exchange is $exchange $to!");
 
-    //     return $this->render('currency/index.html.twig', [
-    //         'currencyForm' => $form->createView(),
-    //     ]);
-    // }
+        return $this->render('currency/index.html.twig', [
+            'currencyForm' => $form->createView(),
+        ]);
+    }
 }
